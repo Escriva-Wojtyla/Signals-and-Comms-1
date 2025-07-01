@@ -11,10 +11,12 @@ def x_of_t(t):
     return signal.square(2* np.pi * t / 1.5, duty=2/3)
 
 # Create object
-fa = Fourier_Analysis(x_of_t, 1.5, 50)
+fa = Fourier_Analysis(x_of_t, 1.5, 60)
 
 # Approximate function
 approx = fa.series(time)
+Contribute_harmonics = fa.harmonics_contribution()
+print(Contribute_harmonics)
 
 # Plot original vs approximation
 plt.plot(time, x_of_t(time), label='Original Signal', linestyle='--')
@@ -25,3 +27,4 @@ plt.xlabel("Time (t)")
 plt.ylabel("x(t)")
 plt.grid(True)
 plt.show()
+
