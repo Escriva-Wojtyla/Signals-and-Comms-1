@@ -40,33 +40,20 @@ class Fourier_Analysis:
             bn = self.coeff_b_n(n)
             s +=  an * np.cos(n * self.omega * time) + bn * np.sin(n * self.omega * time)
         return s
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
+    #added this on 1st July 2025
+    def harmonics_contribution(self):
+        average_power = 7.11  # Initialize
+        n = 1        # Start from 1 to avoid division by zero
+        # I have already calulated the average power and multiplied by .98 to get 6.96
     
+        while average_power <= 6.969:
+            term = (1/(np.pi*n)) * np.sin(4/3*np.pi*n)
+            average_power += term
+            n += 1      # Increment by 1 to go to next term
+
+        return n -1 
     
-    
-    
-
-
-
-
-
-
-
+ 
 
 
 
