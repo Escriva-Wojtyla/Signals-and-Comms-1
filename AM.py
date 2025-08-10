@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 fs = 1000000
-t = np.linespace(0, 0.01, int(fs*1))
+t = np.linspace(0, 1, int(fs*1))
 
 a_c = 2
 a_m = 2
@@ -17,9 +17,10 @@ mod = 1 +  myu * message
 modulated = carrier * mod
 
 plt.figure(figsize=(10,6))
-plt.plot(t, carrier, label="Carrier Signal")
-plt.plot(t, message, "---", alpha=0.4, label="Message signal")
-plt.plot(t, modulated, ":", alpha=0.5, label="AM signal")
+plt.plot(t, carrier, color='blue', label="Carrier Signal")     # solid blue line
+plt.plot(t, message, "--", color='green', alpha=0.7, label="Message signal")  # dashed green line
+plt.plot(t, modulated, ":", color='red', alpha=0.7, label="AM signal")        # dotted red line
+
 
 plt.xlabel("Time(s)")
 plt.ylabel("Amplitude")
