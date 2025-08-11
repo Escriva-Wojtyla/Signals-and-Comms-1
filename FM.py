@@ -1,31 +1,52 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-fs = 10000
-t = np.linespace(0, 0.01, int(fs*0.01))
+fs = 100000
+t = np.linspace(0, 1, int(fs*1))
 
-a_c = 2
-a_m = 2
-myu = 0.25
-f_c = 10
-f_m = 1
+f_c = 10  # Carrier frequency
 
+# Carrier signal
+carrier = np.cos(2 * np.pi * t * f_c)
 
-carrier = a_c * np.cos(20*np.pi*t)
-message = a_m * np.cos(2*np.pi*t)
-mod = 1 +  myu * message
-mudulated = carrier * mod
+# Two FM-modulated signals
+message = np.cos(2 * np.pi * t * f_c + 6 * np.pi * t * t)  # Quadratic phase term
+message_2 = np.cos(2 * np.pi * t * f_c + 6 * np.sin(2 * np.pi * t))  # Sinusoidal phase term
 
-plt.figure(figsize=(10,6))
-plt.plot(t, carrier, label="Cariier Signal")
-plt.plot(t, message, "---", alpha=0.4, label="Message signal")
-plt.plot(t, modulated, ":", alpha=0.5, label="AM signal")
+fig, axes = plt.subplots(4, 1, figsize=(10, 10))
 
-plt.xlabel("Time(s)")
-plt.ylabel("Amplitude")
-plt.title("AM signal)
-plt.legend()
-plt.grid(True)
+# Graph 1: Carrier
+axes[0].plot(t, carrier, color='darkblue', label="Carrier Signal")
+axes[0].set_xlabel("Time(s)")
+axes[0].set_ylabel("Amplitude")
+axes[0].set_title("Carrier Signal (for FM1)")
+axes[0].legend()
+axes[0].grid(True)
+
+# Graph 2: FM signal 1
+axes[1].plot(t, message, color='darkgreen', label="FM signal 1")
+axes[1].set_xlabel("Time(s)")
+axes[1].set_ylabel("Amplitude")
+axes[1].set_title("FM signal 1")
+axes[1].legend()
+axes[1].grid(True)
+
+# Graph 3: Carrier
+axes[2].plot(t, carrier, color='darkblue', label="Carrier Signal")
+axes[2].set_xlabel("Time(s)")
+axes[2].set_ylabel("Amplitude")
+axes[2].set_title("Carrier Signal (for FM2)")
+axes[2].legend()
+axes[2].grid(True)
+
+# Graph 4: FM signal 2
+axes[3].plot(t, message_2, color='darkred', label="FM signal 2")
+axes[3].set_xlabel("Time(s)")
+axes[3].set_ylabel("Amplitude")
+axes[3].set_title("FM signal 2")
+axes[3].legend()
+axes[3].grid(True)
+
 plt.tight_layout()
 plt.show()
 
