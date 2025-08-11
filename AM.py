@@ -19,7 +19,7 @@ modulated = carrier * mod
 plt.figure(figsize=(10,6))
 plt.plot(t, carrier, color='blue', label="Carrier Signal")     # solid blue line
 plt.plot(t, message, "--", color='green', alpha=0.7, label="Message signal")  # dashed green line
-plt.plot(t, modulated, ":", color='green', alpha=0.7, label="AM signal")        # dotted red line
+plt.plot(t, modulated, color='green', alpha=0.7, label="AM signal")        # dotted red line
 
 
 plt.xlabel("Time(s)")
